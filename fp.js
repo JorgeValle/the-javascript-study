@@ -82,7 +82,7 @@ faz('Jorge', 'Maja', 'Sofia', 'David'); // Logs ['Jorge', 'Maja', 'Sofia', 'Davi
  * Using spread operator in the call site!
  */
 function fiz(...args) {
-  console.log(args[3]);
+  console.log('fiz:' + args[3]);
 }
 
 var arr = [1, 2, 3, 4, 5];
@@ -92,12 +92,52 @@ fiz(...arr); // Logs 4
 // The ... operator in a parameter list we said it gathered arguments, in an argument list it spreads them out
 
 /**
- * Currying
+ * Currying a sum. Pay particular attention to the call-site.
  */
-function curry(a) {
+function curriedSum(a) {
   return function(b) {
-    console.log(a + b);
+    console.log(parseInt(a) + parseInt(b));
   }
 }
 
-curry(1, 182);
+curriedSum(1)(182);
+
+/**
+ * Pattern for naming arguments
+ * Arguments cease to be positional
+ */
+function namedArgs({noun, verb} = {}) {
+  return `${noun} loves to ${verb} cheese`;
+}
+
+console.log(namedArgs({noun: 'Pusa', verb: 'eat'})); // Logs Pusa loves to eat cheese
+console.log(namedArgs({verb: 'buy', noun: 'Jorge'})); // Logs Jorge loves to buy cheese
+
+/**
+ * Points-free
+ */
+function triple(x) {
+  return x * 3;
+}
+
+console.log([1, 2, 3, 4, 5].map(triple));
+
+/**
+ * Function composition
+ * Passing output of a function as input of another function
+ */
+function add(x, y) {
+  return x + y;
+}
+
+function mul(x, y) {
+  return x * y;
+}
+
+console.log(mul(add(1,2), 4));
+
+let result = add(10, 5);
+
+console.log(mul(result, 2));
+
+// <----- Order of operations is right to left, or innter to outer

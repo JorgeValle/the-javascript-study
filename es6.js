@@ -89,6 +89,30 @@ console.log(palindromes);
  console.log(arr1);
  console.log(arr2);
 
+ /**
+  * Destructuring objects
+  * Pattern for simulating named arguments
+  */
+function destructuredSubtraction({x, y} = {}) {
+  return (x - y);
+}
+
+console.log(destructuredSubtraction({x: 10, y: 5})); // Logs 5
+console.log(destructuredSubtraction({y: 5, x: 25})); // Logs 20
+
+
+/**
+ * Array destructuring
+ * Pattern for assigning values to compound structures
+ */
+
+function getFib() {
+  return [1, 2, 3, 5, 8];
+}
+
+var [a, b, c, d, e] = getFib();
+
+console.log(c); // Logs 3
 
 /**
  * Generator functions are functions which can be exited and later re-entered
