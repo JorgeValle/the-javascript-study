@@ -141,3 +141,70 @@ let result = add(10, 5);
 console.log(mul(result, 2));
 
 // <----- Order of operations is right to left, or innter to outer
+
+/**
+ * Side effects: when changes are made by a function to a variable outside of itself
+ * Side-effecting damages readability and comprehension of program
+ */
+
+let y = 0;
+
+function causeSideEffect(x) {
+  y = x * 2;
+}
+
+causeSideEffect(3);
+
+console.log(y); // Logs 6
+
+var w = 1;
+
+/**
+ * Side causes
+ * When the output of a function is affected by values changed outside of it
+ */
+function withSideCause(x) {
+  return x + w;
+}
+
+console.log(withSideCause(3)); // Logs 4
+
+w = 3;
+
+console.log(withSideCause(3)); // Logs 6
+
+/**
+ * Idempotence: feeding output back into function repeatedly doesn't change output ever
+ * Non-idempotent operations change state every time
+ */
+function idempotent(x) {
+  return Math.ceil(x);
+}
+
+console.log('Idempotent operation:');
+console.log(idempotent(3.14)); // Logs 4
+console.log(idempotent(idempotent(idempotent(3.14)))); // Logs 4
+
+/**
+ * Pure functions: functions that cause no side causes, or side effects
+ * All inputs and outputs are "direct"
+ */
+function pureFunc(x, y, z) {
+  return (2 * x) + (3 * y) - (5 - z); 
+}
+
+console.log(pureFunc(3, 4, 5));
+
+/**
+ * Impure functions return different values every time they're called, or they cause different side effects, possibly changing program state
+ * 
+ */
+function impureGetDate() {
+  return Date.now();
+}
+
+console.log(impureGetDate());
+
+/**
+ * Referential transparency
+ */

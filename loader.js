@@ -3,4 +3,4 @@ require('babel-register')({
 });
 
 // Import the rest of our application.
-module.exports = require('./es6.js')
+module.exports = require('./fp.js')
